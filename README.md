@@ -1,2 +1,2 @@
-# yolo-labs
-A set of utilities for Yolo Solos.
+# chat-unleashed
+A more advanced interface for interacting with AI models.

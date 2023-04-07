@@ -21,6 +21,7 @@ function Home(props: HomeProps) {
         height: "calc(100vh-64px)",
       }} >
         <Link to="/hex-to-string"><h2>Hex to String</h2></Link>
+        <Link to="/fernet"><h2>Fernet</h2></Link>
       </Container>
     </>
   );

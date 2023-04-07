@@ -14,7 +14,7 @@ const HexToString = () => {
         if (encryptionKey) {
             setEncryptionKey(encryptionKey)
         }
-    }, [])    
+    }, [])
 
     const encryptionKeyChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEncryptionKey(event.target.value)

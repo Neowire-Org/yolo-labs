@@ -1,5 +1,5 @@
 import { Button, TextField } from "@mui/material"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import Fernet from 'fernet-web'
 
 
@@ -8,8 +8,18 @@ const HexToString = () => {
     const [encryptionKey, setEncryptionKey] = useState<string>("")
     const [string, setString] = useState<string>("")
 
+    useEffect(() => {
+        //load from local storage
+        const encryptionKey = localStorage.getItem("encryptionKey")
+        if (encryptionKey) {
+            setEncryptionKey(encryptionKey)
+        }
+    }, [])    
+
     const encryptionKeyChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
         setEncryptionKey(event.target.value)
+        //store in local storage
+        localStorage.setItem("encryptionKey", event.target.value)
     }
 
     const stringChanged = (event: React.ChangeEvent<HTMLInputElement>) => {

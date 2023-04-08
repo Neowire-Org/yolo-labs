@@ -16,6 +16,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers'
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import HexToString from '../Tools/HexToString'
 import Fernet from '../Tools/Fernet'
+import AssetFingerPrint from '../Tools/AssetFingerPrint'
 
 
 const color_primary = "#333"
@@ -115,6 +116,7 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/hex-to-string" element={<HexToString />} />
             <Route path="/fernet" element={<Fernet />} />
+            <Route path="/asset-fingerprint" element={<AssetFingerPrint />} />
           </Routes>
         </RootContainer>
       </ThemeProvider>

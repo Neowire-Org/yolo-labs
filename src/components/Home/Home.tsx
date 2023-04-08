@@ -22,6 +22,7 @@ function Home(props: HomeProps) {
       }} >
         <Link to="/hex-to-string"><h2>Hex to String</h2></Link>
         <Link to="/fernet"><h2>Fernet</h2></Link>
+        <Link to="/asset-fingerprint"><h2>Asset Fingerprint</h2></Link>
       </Container>
     </>
   );

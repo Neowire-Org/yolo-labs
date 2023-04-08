@@ -39,6 +39,8 @@
     "@mui/icons-material": "^5.11.11",
     "@mui/material": "^5.11.13",
     "@mui/x-date-pickers": "^6.0.1",
+    "bech32": "^2.0.0",
+    "blakejs": "^1.2.1",
     "date-fns": "^2.29.3",
     "fernet-web": "^1.0.1",
     "react-router-dom": "^6.9.0",

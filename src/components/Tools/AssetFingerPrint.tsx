@@ -63,7 +63,6 @@ const AssetFingerPrint = () => {
     
       // Calculate the Blake2b-160 hash
       const hash = blake.blake2b(policyAssetBytes, undefined, 20);
-      console.log(hash)
     
       // Encode using Bech32 with 'asset' as the human-readable part (hrp)
       const encoded = bech32.encode('asset', bech32.toWords(hash));

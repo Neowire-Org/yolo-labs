@@ -7,7 +7,7 @@ import * as blake from 'blakejs';
 const AssetFingerPrint = () => {
 
     const [policyId, setPolicyId] = useState<string>("")
-    const [assetId, setAssetId] = useState<string>("")
+    const [assetName, setassetName] = useState<string>("")
     const [assetFingerPrint, setAssetFingerPrint] = useState<string>("")
 
     useEffect(() => {
@@ -23,17 +23,17 @@ const AssetFingerPrint = () => {
         localStorage.setItem("policyid", event.target.value)
     }
     const policyIdBlur = (_: React.FocusEvent<HTMLInputElement>) => {
-        if(policyId.length> 0 && assetId.length > 0) {
-            setAssetFingerPrint(assetFingerprint(policyId, assetId))
+        if(policyId.length> 0) {
+            setAssetFingerPrint(assetFingerprint(policyId, assetName))
         }
     }
 
-    const assetIdChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setAssetId(event.target.value)
+    const assetNameChanged = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setassetName(event.target.value)
     }    
-    const assetIdBlur = (_: React.FocusEvent<HTMLInputElement>) => {
-        if(policyId.length> 0 && assetId.length > 0) {
-            setAssetFingerPrint(assetFingerprint(policyId, assetId))
+    const assetNameBlur = (_: React.FocusEvent<HTMLInputElement>) => {
+        if(policyId.length> 0) {
+            setAssetFingerPrint(assetFingerprint(policyId, assetName))
         }
     }    
     
@@ -53,16 +53,17 @@ const AssetFingerPrint = () => {
       return result;
     }
     
-    function assetFingerprint(policyId: string, assetId: string): string {
-      // Convert policyId and assetId from hex to Uint8Array
+    function assetFingerprint(policyId: string, assetName: string): string {
+      // Convert policyId and assetName from hex to Uint8Array
       const policyIdBytes = hexToUint8Array(policyId);
-      const assetIdBytes = hexToUint8Array(assetId);
+      const assetNameBytes = hexToUint8Array(assetName);
     
-      // Concatenate policyId and assetId
-      const policyAssetBytes = concatUint8Arrays(policyIdBytes, assetIdBytes);
+      // Concatenate policyId and assetName
+      const policyAssetBytes = concatUint8Arrays(policyIdBytes, assetNameBytes);
     
-      // Calculate the Blake2b-224 hash
-      const hash = blake.blake2b(policyAssetBytes, new Uint8Array(), 28);
+      // Calculate the Blake2b-160 hash
+      const hash = blake.blake2b(policyAssetBytes, undefined, 20);
+      console.log(hash)
     
       // Encode using Bech32 with 'asset' as the human-readable part (hrp)
       const encoded = bech32.encode('asset', bech32.toWords(hash));
@@ -84,19 +85,19 @@ const AssetFingerPrint = () => {
             fullWidth
         />
         <TextField
-            id="string"
-            label="Asset Id"
+            id="asset-name"
+            label="Asset Name"
             variant="outlined"
             margin="normal"
-            value={assetId}
-            onChange={assetIdChanged}
-            onBlur={assetIdBlur}
+            value={assetName}
+            onChange={assetNameChanged}
+            onBlur={assetNameBlur}
             fullWidth
         />
 
     <TextField
-            id="string"
-            label="Asset Id"
+            id="asset-fingerprint"
+            label="Asset Fingerprint"
             variant="outlined"
             margin="normal"
             value={assetFingerPrint}
